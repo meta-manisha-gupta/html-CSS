@@ -1,0 +1,20 @@
+
+<canvas id="myCanvas" width="200" height="200">
+</canvas>
+
+<body>
+<script>
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,100,100,0.5*Math.PI,1.5*Math.PI);
+ctx.fillStyle="aqua";
+ctx.fill();
+ctx.closePath();
+ctx.beginPath();
+ctx.arc(100,100,95,1.5*Math.PI,0.5*Math.PI);
+ctx.strokeStyle="grey";
+ctx.lineWidth=10;
+ctx.stroke();
+</script>
+</body>
