@@ -1,0 +1,73 @@
+<html>
+<head>
+  <title>
+    Stack
+  </title>
+</head>
+<body>
+  <div>
+    <input type="text" id="input" placeholder="Enter input here">
+    <button id="add" >Push</button>
+    <button id="remove">Pop</button>
+  </div>
+  <div id="result">
+  </div>
+  <div id="messageArea">
+  </div>
+  <script>
+  var addBtn = document.getElementById('add');        //Button to add elements
+  var removeBtn = document.getElementById('remove');  //Button to remove elements
+  var displayArea = document.getElementById('result'); //To display stack
+  var msgArea = document.getElementById('messageArea'); //to display any message
+  var inputData = document.getElementById('input');      //the input text field
+
+
+  class Stack{
+		constructor(){
+		this.stackarray = [];
+		this.top = -1;
+		}
+    /*Function to push the element in the stack*/
+  	push(element){
+  	this.top++;
+  	this.stackarray[this.top] = element;
+    this.display();
+    inputData.value="";
+    msgArea.innerHTML="Element added";
+  	}
+    /*Function to pop the element from the stack*/
+  	pop(){
+      if (this.top < 0){
+  			msgArea.innerHTML="Underflow";
+        return;
+  		}
+  	else{
+  			this.top--;
+  		}
+      this.display();
+      msgArea.innerHTML="Element removed";
+  }
+  /*Function to display the stack*/
+	display(){
+    displayArea.innerHTML="<br>";
+		for (var i = this.top; i>=0; i--){
+			displayArea.innerHTML += (this.stackarray[i]) +"<br>";
+		}
+  }
+}
+var stack = new Stack();          //Creating a new stack object
+addBtn.addEventListener("click" , function(){
+  if(inputData.value == ""){
+    msgArea.innerHTML="Enter a value";
+    return;
+  }
+  stack.push(inputData.value);
+});
+removeBtn.addEventListener("click" , function(){
+  stack.pop();
+});
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>
+  <title>
+    Queue
+  </title>
+</head>
+<body>
+  <div>
+    <input type="text" id="input" placeholder="Enter input here">
+    <button id="enqueue">Add Element</button>
+    <button id="dequeue">Remove Element</button>
+  </div>
+  <div id="result">
+  </div>
+  <div id="messageArea">
+  </div>
+  <script>
+  var addBtn = document.getElementById('enqueue');        //Button to add elements
+  var removeBtn = document.getElementById('dequeue');     //Button to remove elements
+  var displayArea = document.getElementById('result');    //To display stack
+  var msgArea = document.getElementById('messageArea');   //to display any message
+  var inputData = document.getElementById('input');       //the input text field
+
+
+  class Queue{
+  	constructor(){
+  		this.queuearray = [];
+  		this.front = 0;
+  		this.rear = -1;
+  	}
+    /*Function to push the element in the queue*/
+  enqueue(element){
+  	this.rear++;
+  	this.queuearray[this.rear] = element;
+    this.display();
+    inputData.value="";
+    msgArea.innerHTML="Element added";
+  }
+    /*Function to pop the element from the queue*/
+  dequeue(){
+  	if( this.front > this.rear) {
+      msgArea.innerHTML="Underflow";
+      return;
+  	}
+  	else{
+  		this.front++;
+  	}
+    this.display();
+    msgArea.innerHTML="Element removed";
+  }
+  /*Function to display the queue*/
+  display(){
+    displayArea.innerHTML="<br>";
+    for (var i = this.front; i <= this.rear; i++){
+      displayArea.innerHTML += (this.queuearray[i]) +"-->";
+    }
+    displayArea.innerHTML += "null";
+  }
+  }
+  var q = new Queue();                          //creating a new queue
+  addBtn.addEventListener("click" , function(){
+    if(inputData.value == ""){
+      msgArea.innerHTML="Enter a value";
+      return;
+    }
+    q.enqueue(inputData.value);
+  });
+  removeBtn.addEventListener("click" , function(){
+    q.dequeue();
+  });
+  </script>
+</body>
+</html>
